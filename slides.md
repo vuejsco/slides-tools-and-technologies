@@ -24,9 +24,16 @@ mdc: true
 layout: center
 ---
 
-# **Fabian Beltran**  
-Organizador de Vue JS Colombia  
-Desarrollador Frontend en Alegra
+
+# Presentado por: 
+- **Fabian Beltran**  
+  - Organizador de **Vue JS Colombia**  
+  - Desarrollador Frontend en **Alegra**
+
+
+## En colaboración con:
+### **Josue Barreto**
+- Estudiante Ing. de Software
 
 ---
 layout: center
