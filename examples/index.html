@@ -1,0 +1,33 @@
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<div id="app">
+    <h1>{{ message }}</h1>
+    <input v-model="name" placeholder="¿Cómo te llamas?" />
+    <p v-if="name">¡Hola, <b>{{ name }}</b>! 👋</p>
+    <button @click="count++">
+        Haz click
+    </button>
+    <p>
+        Has hecho click <b>{{ count }}</b> veces
+    </p>
+    <ul>
+        <li v-for="(framework, i) in frameworks" :key="i">
+            {{ framework }}
+        </li>
+    </ul>
+</div>
+
+<script>
+    const { createApp, ref } = Vue
+
+    createApp({
+        setup() {
+            const message = ref('¡Bienvenido a Vue 3!')
+            const count = ref(0)
+            const name = ref('')
+            const frameworks = ref(['Vue', 'Angular', 'Svelte', 'React'])
+
+            return { message, count, name, frameworks }
+        }
+    }).mount('#app')
+</script>
