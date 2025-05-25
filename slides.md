@@ -32,6 +32,7 @@ Desarrollador Frontend en Alegra
 layout: center
 ---
 
+<!-- TODO: Ajustar con los contenidos -->
 
 ## ¿Qué aprenderás hoy?
 
@@ -47,6 +48,8 @@ layout: center
 ---
 layout: center
 ---
+
+<!-- TODO: Mejorar -->
 
 # ¿Qué es Vue.js?
 
@@ -83,60 +86,32 @@ Podemos crear un proyecto con solo un `index.html` o usar vite para montar un nu
 
 ```html {monaco}
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-
 <div id="app">
-  <h1>{{ message }}</h1>
-  <button @click="count++">Click me</button>
-  <p>Count: {{ count }}</p>
+    <h1>{{ message }}</h1>
+    <input v-model="name" placeholder="¿Cómo te llamas?" />
+    <p v-if="name">¡Hola, <b>{{ name }}</b>! 👋</p>
+    <button @click="count++"> Haz click</button>
+    <p>Has hecho click <b>{{ count }}</b> veces</p>
+    <ul>
+      <li v-for="(framework, i) in frameworks" :key="i">
+          {{ framework }}
+      </li>
+    </ul>
 </div>
-
 <script>
-  const { createApp, ref } = Vue
-
-  createApp({
-    setup() {
-      const message = ref('Hello vue!')
-      const count = ref(0)
-      return {
-        message,
-        count
-      }
-    }
-  }).mount('#app')
+    const { createApp, ref } = Vue
+    createApp({
+        setup() {
+            const message = ref('¡Bienvenido a Vue 3!')
+            const count = ref(0)
+            const name = ref('')
+            const frameworks = ref(['Vue', 'Angular', 'Svelte', 'React'])
+            return { message, count, name, frameworks }
+        }
+    }).mount('#app')
 </script>
 ```
 
----
-layout: default
----
-
-# Como iniciar un proyecto de Vue.js
-
-## Vite 
-
-::code-group
-
-```sh [npm]
-npm create vite@latest
-```
-
-```sh [yarn]
-yarn create vite
-```
-
-```sh [pnpm]
-pnpm create vite
-```
-::
-<!--(Primera tecnologia del ecosistema de vue) -->
-
-
----
-layout: cover
----
-# APIs de Vue.js
-
-## Option
 
 ---
 layout: default
@@ -247,12 +222,19 @@ import HelloWorld from './HelloWorld.vue'
 ````
 
 ---
+layout: cover
+---
+# APIs de Vue.js
+
+## Option
+
+---
 layout: default
 ---
 
 # Expresiones con JavaScript
 
-```vue {13-14|15-18|20}
+```vue {all|13-14|15-18|6-8|20}
 <script setup>
 const message = 'Hello, Vue 3! ';
 const count = 0;
@@ -276,7 +258,6 @@ function formatDate(date) {
 </template>
 ```
 
-
 ---
 layout: default
 ---
@@ -284,11 +265,40 @@ layout: default
 # Herramientas del ecosistema
 
 - **Vue CLI / Vite**: Creación y configuración de proyectos.
-- **Vitest**: Para testing
-- **Vue Devtools**: Depuración.
 - **Vue Router**: Enrutamiento SPA.
 - **Pinia / Vuex**: Manejo de estado.
+- **Vue Devtools**: Depuración.
+- **Vitest**: Para testing
 - **Nuxt.js**: SSR y SSG con Vue.
+
+---
+layout: default
+---
+
+# Como iniciar un proyecto de Vue.js
+
+## Vite 
+
+::code-group
+
+```sh [npm]
+npm create vite@latest
+```
+
+```sh [yarn]
+yarn create vite
+```
+
+```sh [pnpm]
+pnpm create vite
+```
+::
+<!--(Primera tecnologia del ecosistema de vue) -->
+
+---
+
+# Vue Router
+
 
 ---
 layout: default
