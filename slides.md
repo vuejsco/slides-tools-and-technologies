@@ -145,7 +145,7 @@ layout: default
 # Ejemplo de componente
 
 ```shell
-ComponentA.Vue
+HelloWorld.Vue
 ```
 
 ````md magic-move
@@ -219,6 +219,63 @@ const frameworks = ref(['Vue', 'Angular', 'Svelte', 'React'])
 </style>
 ```
 ````
+
+---
+layout: default
+---
+
+# Ejemplo de componente
+
+```shell
+ParentComponent.Vue
+```
+
+````md magic-move
+```vue {all|2}
+<script>
+import HelloWorld from './HelloWorld.vue'
+</script>
+```
+```vue{4-6|5}
+<script>
+import HelloWorld from './HelloWorld.vue'
+</script>
+<template>
+  <HelloWorld />
+</template>
+```
+````
+
+---
+layout: default
+---
+
+# Expresiones con JavaScript
+
+```vue {13-14|15-18|20}
+<script setup>
+const message = 'Hello, Vue 3! ';
+const count = 0;
+
+// format date
+function formatDate(date) {
+  return date.toISOString();
+}
+
+</script>
+
+<template>
+  <h1>{{ message + 'AltSchool' }}</h1>
+  <h3>{{ message.toUpperCase() }}</h3>
+  <!-- Podemos usar cualquier expresion de JS -->
+  <h2>{{message.repeat(3)}}</h2>
+  <h2>{{message + 'AltSchool'.toUpperCase()}}</h2>
+  <div>Cart: {{ count > 1 ? 'items' : 'item' }}</div>
+  <!-- Y cualquier funcion que creemos -->
+  <div>Current time: {{ formatDate(new Date()) }}</div>
+</template>
+```
+
 
 ---
 layout: default
