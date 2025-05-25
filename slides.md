@@ -1,5 +1,4 @@
 ---
-theme: vuetiful
 layout: center
 title: Herramientas y tecnologías del ecosistema de Vue
 info: |
@@ -48,6 +47,46 @@ layout: center
 - Manejo de estado (Pinia, Vuex)
 - Ecosistema robusto
 
+
+---
+layout: section
+---
+
+# Un componente en Vue
+
+<!-- This is a **note** -->
+
+---
+layout: default
+---
+
+# Ejemplo de componente
+
+```shell
+ComponentA.Vue
+```
+
+````md magic-move
+```vue {all}
+<script>
+</script>
+```
+```vue{3-4|all}
+<script>
+</script>
+<template>
+</template>
+```
+```vue{5-6|all}
+<script>
+</script>
+<template>
+</template>
+<style>
+</style>
+```
+````
+
 ---
 layout: default
 ---
@@ -55,17 +94,17 @@ layout: default
 # Ejemplo de componente
 
 ````md magic-move
-```vue
+```vue {all}
 <script>
 </script>
 ```
-```vue
+```vue{3-4|all}
 <script>
 </script>
 <template>
 </template>
 ```
-```vue
+```vue{5-6|all}
 <script>
 </script>
 <template>
