@@ -29,6 +29,9 @@ Organizador de Vue JS Colombia
 Desarrollador Frontend en Alegra
 
 ---
+layout: center
+---
+
 
 ## ¿Qué aprenderás hoy?
 
@@ -71,7 +74,7 @@ layout: center
 
 
 ---
-layout: section
+layout: default
 ---
 
 # Como iniciar con Vue.js
@@ -103,7 +106,6 @@ Podemos crear un proyecto con solo un `index.html` o usar vite para montar un nu
 </script>
 ```
 
-
 ---
 layout: default
 ---
@@ -127,6 +129,15 @@ pnpm create vite
 ```
 ::
 <!--(Primera tecnologia del ecosistema de vue) -->
+
+
+---
+layout: cover
+---
+# APIs de Vue.js
+
+## Option
+
 ---
 layout: default
 ---
@@ -156,31 +167,55 @@ ComponentA.Vue
 <style>
 </style>
 ```
-````
 
----
-layout: default
----
-
-# Ejemplo de componente
-
-````md magic-move
-```vue {all}
+```vue {1-7|2|3-6|}
 <script>
-</script>
-```
-```vue{3-4|all}
-<script>
-</script>
-<template>
-</template>
-```
-```vue{5-6|all}
-<script>
+import { ref } from 'vue'
+const message = ref('¡Bienvenido a Vue 3!')
+const count = ref(0)
+const name = ref('')
+const frameworks = ref(['Vue', 'Angular', 'Svelte', 'React'])
 </script>
 <template>
 </template>
 <style>
+</style>
+```
+
+```vue{3-16|5|6-7|8-9|10-14}
+<script>
+</script>
+<template>
+  <div>
+      <h1 class="msg">{{ message }}</h1>
+      <input v-model="name" placeholder="¿Cómo te llamas?" />
+      <p v-if="name">¡Hola, <b>{{ name }}</b>! 👋</p>
+      <button @click="count++"> Haz click </button>
+      <p> Has hecho click <b>{{ count }}</b> veces </p>
+      <ul>
+          <li v-for="(framework, i) in frameworks" :key="i">
+              {{ framework }}
+          </li>
+      </ul>
+  </div>
+</template>
+<style>
+</style>
+```
+
+```vue{5|8-13}
+<script>
+</script>
+<template>
+  <div>
+      <h1 class="msg">{{ message }}</h1>
+  </div>
+</template>
+<style>
+.msg{
+  font-size: 1rem;
+  padding: 0 8px;
+}
 </style>
 ```
 ````
