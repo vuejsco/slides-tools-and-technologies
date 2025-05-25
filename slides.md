@@ -1,5 +1,6 @@
 ---
-theme: default
+theme: vuetiful
+layout: center
 title: Herramientas y tecnologías del ecosistema de Vue
 info: |
 class: text-center
@@ -7,23 +8,16 @@ drawings:
   persist: false
 transition: slide-left
 mdc: true
-layout: center
 ---
 
 # Herramientas y tecnologías del ecosistema de VueJS
 
 En colaboración con MedellinJS y Vue JS Colombia
 
-Por Fabian Beltran
-
-<div class="m-6 text-xl">
-  <a href="https://github.com/vuejsco/slides-tools-and-technologies" target="_blank" class="slidev-icon-btn">
-    <carbon:logo-github />
-  </a>
-</div>
+### Por Fabian Beltran
 
 ---
-layout: center
+layout: default
 ---
 
 # ¿Quién soy?
