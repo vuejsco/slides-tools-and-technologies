@@ -294,10 +294,11 @@ layout: default
 layout: default
 ---
 
-# Ejemplo Pinia
+# Ejemplo de uso de Pinia
 
 ````md magic-move
 ```javascript{2|6}
+/// Configuración
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import App from './App.vue'
@@ -310,7 +311,7 @@ app.mount('#app')
 ```
 
 ```javascript
-// stores/counter.js
+// Definición del store en stores/counter.js
 import { defineStore } from 'pinia'
 export const useCounterStore = defineStore('counter', () => {
   const count = ref(0)
@@ -323,6 +324,7 @@ export const useCounterStore = defineStore('counter', () => {
 ```
 
 ```vue
+<!-- Consumo del store -->
 <script setup>
 import { useCounterStore } from '@/stores/counter'
 
@@ -332,6 +334,7 @@ const store = useCounterStore()
 
 <template>
   <p> {{ store.count }} </p>
+  <button @click="store.increment()">Incrementar conteo</button>
 </template>
 ```
 ````
