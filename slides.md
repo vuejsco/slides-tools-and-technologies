@@ -233,3 +233,50 @@ layout: default
 - **Pinia / Vuex**: Manejo de estado.
 - **Nuxt.js**: SSR y SSG con Vue.
 
+---
+layout: default
+---
+
+# Ejemplo Pinia
+
+````md magic-move
+```javascript{2|6}
+import { createApp } from 'vue'
+import { createPinia } from 'pinia'
+import App from './App.vue'
+
+const pinia = createPinia()
+const app = createApp(App)
+
+app.use(pinia)
+app.mount('#app')
+```
+
+```javascript
+// stores/counter.js
+import { defineStore } from 'pinia'
+export const useCounterStore = defineStore('counter', () => {
+  const count = ref(0)
+  function increment() {
+    count.value++
+  }
+
+  return { count, increment }
+})
+```
+
+```vue
+<script setup>
+import { useCounterStore } from '@/stores/counter'
+
+// accede a las variables `count` y al metodo `increment`
+const store = useCounterStore()
+</script>
+
+<template>
+  <p> {{ store.count }} </p>
+</template>
+```
+````
+
+
