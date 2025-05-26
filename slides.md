@@ -303,9 +303,76 @@ pnpm create vite
 <!--(Primera tecnologia del ecosistema de vue) -->
 
 ---
+layout: default
+---
 
 # Vue Router
 
+````md magic-move
+
+```javascript
+// Configuración
+import { createMemoryHistory, createRouter } from 'vue-router'
+import HomeView from './HomeView.vue'
+import AboutView from './AboutView.vue'
+import UserView from './UserView.vue'
+
+const routes = [
+  { path: '/', component: HomeView },
+  { path: '/about', component: AboutView },
+  // Pasar variable "name" a la vista
+  { path: '/user/:name', component: UserView },
+  { path: '/lazyloading', component: () => import('./views/Lazyloading.vue') }
+]
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
+})
+```
+
+```javascript
+// Configuración
+const router = createRouter({ ... })
+
+// Esta función va a ser ejecutada cada vez
+// que el usuario navegue a las vistas
+router.beforeEach((to, from) => {
+  const canAccess = await canUserAccess(to)
+  if (!canAccess) return '/login'
+})
+
+```
+
+```vue
+<!-- Uso del router -->
+<script setup>
+import { useRouter, useRoute } from 'vue-router'
+const router = useRouter()
+const route = useRoute()
+
+function goToUsers() {
+  router.push({ name : "Users" })
+}
+
+</script>
+<template>
+  <div>
+    <router-link :to="{ name: 'Home' }">Home</router-link> 
+    <router-link :to="{ name: 'Users' }">Users</router-link>
+  </div>
+
+  <p>
+    <p>{{ route.params.id }}</p>
+    <button @click="router.go(-1)">Regresarse</button>
+    <button @click="goToUsers()">Ir a usuarios</button>
+  </p>
+  <router-view/>
+</template>
+
+```
+
+````
 
 ---
 layout: default
