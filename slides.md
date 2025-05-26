@@ -2,17 +2,12 @@
 theme: seriph
 layout: center
 title: Herramientas y tecnologías del ecosistema de Vue
-info: |
 class: text-center
-drawings:
-  persist: false
 transition: slide-left
 mdc: true
 ---
 
 # Herramientas y tecnologías del ecosistema de VueJS
-
-
 
 ## En colaboración con
 
@@ -356,7 +351,7 @@ layout: default
 En Vue puedes usar **expresiones JavaScript directamente en el template**.  
 Esto te permite mostrar valores derivados, manipular strings, aplicar condiciones, y llamar funciones.
 
-```vue {monaco-run}
+```vue
 <script setup>  
 const message = 'Hello, Vue 3!'
 const count = 0
@@ -372,11 +367,11 @@ function formatDate(date) {
   <!-- Métodos de strings -->
   <h3>{{ message.toUpperCase() }}</h3>
   <h2>{{ message.repeat(3) }}</h2>
-  <2>{{ message + 'AltSchool'.toUpperCase() }}</2>
+  <h2>{{ message + 'AltSchool'.toUpperCase() }}</h2>
   <!-- Operador ternario -->
-  <dv>Cart: {{ count > 1 ? 'items' : 'item' }}</dv>
+  <h3>Cart: {{ count > 1 ? 'items' : 'item' }}</h3>
   <!-- Llamado de función definida en script -->
-  <div>Current time: {{ formatDate(new Date()) }}</div>'
+  <div>Current time: {{ formatDate(new Date()) }}</div>
 </template>
 ```
 
@@ -389,7 +384,11 @@ ANOTACIONES:
 -->
 
 ---
-layout: default
+
+# Uso de expresiones en templates Vue
+
+<ExpressionTemplate />
+
 ---
 
 # ¿Qué expresiones JS se pueden usar en el template?
@@ -477,6 +476,7 @@ Estos son 3 hooks que Vue dispone para calcular, observar y reaccionar
 Una propiedad computada se utiliza para describir de forma declarativa un valor que depende de otros valores. 
 </br>
 Las propiedades computadas te ahorran tiempo y hacen que tu código sea más limpio, ya que reflejan automáticamente los cambios en tus datos. </br>
+
 <ComputedProperties />
 
 ---
@@ -605,6 +605,14 @@ layout: default
 - **Vitest**: Para testing
 - **Nuxt.js**: SSR y SSG con Vue.
 
+<!-- 
+Dato curisoso #5: 
+
+Integración con Laravel:  
+
+Vue.js ganó notoriedad en la comunidad de Laravel y PHP, ya que Taylor Otwell, el creador de Laravel, lo promovió como la solución frontend por defecto en sus proyectos 
+-->
+
 ---
 
 # ¿Qué es Vite?  
@@ -649,6 +657,14 @@ pnpm create vite
 - Influencia en nuevas herramientas como Turbopack (Next.js)
 
 ✨ Vite es el nuevo estándar del desarrollo web moderno
+
+<!-- 
+Dato curisoso #6: 
+
+Popularidad en China:  
+
+Vue.js es extremadamente popular en China, siendo utilizado por grandes empresas como Alibaba y Xiaomi. Esta adopción ha contribuido significativamente a su crecimiento global.
+-->
 
 ---
 
