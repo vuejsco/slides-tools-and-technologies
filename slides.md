@@ -49,7 +49,7 @@ layout: center
 - Ejemplo práctico de un componente Vue
 - Recursos y comunidades para seguir aprendiendo
 
-<!-- Mi meta es convencerte de que pruebes Vue.js, lo lograre? -->
+<!-- Objetivo: Convencerte de que pruebes Vue.js -->
 
 
 ---
@@ -65,9 +65,10 @@ layout: center
 - Fácil de integrar con otros proyectos y bibliotecas.
 - Reactivo.
 
-<!-- Te ire dando datos curiosos de Vue a lo largo de la charla,  
-El primero   
-Inicialmente, se llamaria View, pero parecía demasiado obvio, así que buscó en el traductor de Google las traducciones que le gustaban y terminó optando por el francés Vue.   -->
+<!-- Te ire dando datos curiosos de Vue a lo largo de la charla.   
+Dato curioso #1:  
+El creador del framework es Evan You.  
+Lo lanzó en 2014, hace más de 11 años. -->
 
 
 ---
@@ -82,6 +83,8 @@ layout: center
 - Manejo de estado (Pinia, Vuex)
 - Ecosistema robusto
 
+<!-- Dato curioso #2:  
+Inicialmente iba a llamarse "View", pero Evan lo cambió a "Vue" tras buscar en Google Translate y elegir el francés por estética. -->
 
 ---
 layout: default
@@ -119,16 +122,21 @@ Podemos crear un proyecto con solo un `index.html` o usar vite para montar un nu
 </script>
 ```
 
+<!--
+C:\Users\FabianAlegra\Desktop\VueJsCo\Slides-VueJS-Tools\examples\index.html
+-->
 
 ---
 layout: default
 ---
 
-# Ejemplo de componente
+# Estructura de un componente Vue
 
 ```shell
 HelloWorld.Vue
 ```
+
+Un componente Vue combina HTML, JS y CSS en un solo archivo `.vue`
 
 ````md magic-move
 ```vue {all}
@@ -202,6 +210,18 @@ const frameworks = ref(['Vue', 'Angular', 'Svelte', 'React'])
 ```
 ````
 
+<!--
+Dato curioso #3:  
+Evan You se inspiró en AngularJS.  
+Quería crear algo más liviano, usando solo lo que le gustaba del framework original.  
+
+Los nombre de los componentes tienen que ser MultiWord, esto con la idea de que se puedan diferencias de las etiquetas de html nativas  
+Script - Logica 
+
+Template - HTML 
+
+Style - Estilos 
+-->
 ---
 layout: default
 ---
@@ -229,41 +249,203 @@ import HelloWorld from './HelloWorld.vue'
 ````
 
 ---
-layout: cover
+layout: default
 ---
-# APIs de Vue.js
 
-## Option
+# Template – Directivas
+
+Vue usa *directivas* para extender HTML con lógica:
+
+- `v-bind`: enlaza atributos
+- `v-model`: enlace bidireccional
+- `v-for`: bucles
+- `v-if`, `v-else-if`, `v-show`: condiciones
+- `@click`, `@input`, etc.: eventos
+
+````md magic-move
+```html
+<button @click="count++" :disabled="isLoading">
+  Count: {{ count }}
+</button>
+```
+````
 
 ---
 layout: default
 ---
 
-# Expresiones con JavaScript
+# Combinando 'v-for' y 'v-if'
 
-```vue {all|13-14|15-18|6-8|20}
+Aunque se pueden usar juntos, **no es recomendable** colocar ambos en el mismo elemento. Esto puede generar ambigüedades y problemas de rendimiento.
+
+❌ **Mala práctica – Ambos en el mismo nodo**:
+
+```html
+<li v-for="user in users" v-if="user.active">
+  {{ user.name }}
+</li>
+```
+
+✅ **Mejor práctica – Usar en elementos anidados**:
+
+```html
+<ul>
+  <li v-for="user in users" :key="user.id">
+    <span v-if="user.active">{{ user.name }}</span>
+  </li>
+</ul>
+```
+
+<!-- 
+ANOTACIONES:
+
+- Vue procesa 'v-if' antes que 'v-for', lo cual puede provocar resultados inesperados.
+- La forma correcta es usar 'v-if' dentro del bloque de iteración, no en la misma línea.
+-->
+
+---
+layout: default
+---
+
+# Malas prácticas comunes en templates
+
+Evita incluir **lógica compleja directamente en el template**. Manténlo limpio y declarativo.
+
+❌ **Evitar lógica compleja inline**:
+
+```html
+<p>{{ items.filter(i => i.active).map(i => i.name).join(',') }}</p>
+```
+
+✅ **Mejor en el script**:
+
+```vue
 <script setup>
-const message = 'Hello, Vue 3! ';
-const count = 0;
-
-// format date
-function formatDate(date) {
-  return date.toISOString();
-}
-
+const activeNames = computed(() =>
+  items.value.filter(i => i.active).map(i => i.name).join(',')
+)
 </script>
 
 <template>
-  <h1>{{ message + 'AltSchool' }}</h1>
-  <h3>{{ message.toUpperCase() }}</h3>
-  <!-- Podemos usar cualquier expresion de JS -->
-  <h2>{{message.repeat(3)}}</h2>
-  <h2>{{message + 'AltSchool'.toUpperCase()}}</h2>
-  <div>Cart: {{ count > 1 ? 'items' : 'item' }}</div>
-  <!-- Y cualquier funcion que creemos -->
-  <div>Current time: {{ formatDate(new Date()) }}</div>
+<p>{{ activeNames }}</p>
 </template>
 ```
+
+<!-- 
+ANOTACIONES:
+
+- El template debe mostrar datos, no procesarlos.
+- Mover la lógica a una propiedad computada mantiene el código más legible y mantenible.
+-->
+
+
+---
+layout: default
+---
+
+# Uso de expresiones en templates Vue
+
+En Vue puedes usar **expresiones JavaScript directamente en el template**.  
+Esto te permite mostrar valores derivados, manipular strings, aplicar condiciones, y llamar funciones.
+
+```vue
+<script setup>  
+const message = ''Hello, Vue 3!''
+const count = 0
+
+// Función auxiliar para mostrar fecha actual
+function formatDate(date) {
+  return date.toISOString()
+}
+</script>
+
+<template>
+  <!-- Concatenación de strings -->
+  <1>{{ message + ''AltSchool'' }}</1>
+  <!-- Métodos de strings -->
+  <h3>{{ message.toUpperCase() }}</h3>
+  <h2>{{ message.repeat(3) }}</h2>
+  <2>{{ message + ''AltSchool''.toUpperCase() }}</2>
+  <!-- Operador ternario -->
+  <dv>Cart: {{ count > 1 ? ''items'' : ''item'' }}</dv>
+  <!-- Llamado de función definida en script -->
+  <div>Current time: {{ formatDate(new Date()) }}</div>'
+</template>
+```
+
+<!-- 
+ANOTACIONES:
+
+- Vue soporta expresiones JS simples dentro de {{ }}.
+- No se recomienda usar lógica compleja o estructuras como loops o asignaciones en el template.
+- Las expresiones deben ser *side-effect free* (sin efectos secundarios).
+-->
+
+---
+layout: default
+---
+
+# ¿Qué expresiones JS se pueden usar en el template?
+
+Vue permite usar **expresiones simples**, pero **no estructuras de control ni declaraciones**.
+
+````md magic-move
+
+```vue
+<template>
+  <!-- Operaciones básicas -->
+  <p>{{ count + 1 }}</p>
+  <p>{{ name.toUpperCase() }}</p>
+
+  <!-- Operador ternario -->
+  <p>{{ isAdmin ? 'Admin' : 'Usuario' }}</p>
+
+  <!-- Acceso a propiedades y funciones -->
+  <p>{{ user.age >= 18 }}</p>
+  <p>{{ formatDate(new Date()) }}</p>
+</template>
+```
+
+```vue
+<template>
+  <!-- ❌ No puedes declarar variables -->
+  <!-- <p>{{let x = 5 }}</p>  -->
+
+  <!-- ❌ No puedes usar if/else -->
+  <!-- <p>{{ if (a > b) return 'Mayor' }}</p> -->
+
+  <!-- ❌ No loops ni try/catch -->
+  <!-- <p>{{ for (let i = 0; i < 5; i++) {} }}</p> -->
+</template>
+```
+````
+
+<!-- 
+ANOTACIONES:
+
+- Las expresiones deben evaluarse a un valor, no ejecutar bloques de código.
+- Si necesitas lógica compleja, muévela al script como funciones o propiedades computadas.
+-->
+
+---
+
+
+
+---
+layout: cover
+---
+# APIs de Vue.js
+
+## Composition (Actual)
+
+## Option (Anterior)
+
+
+<!-- Cuarto:
+Nombres de Versiones Inspirados en Anime: 
+Las versiones de Vue.js llevan nombres de series de anime populares, como "Evangelion", "Dragon Ball", "Naruto" y "One Piece" .
+ -->
+
 
 ---
 layout: default
