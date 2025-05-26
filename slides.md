@@ -310,7 +310,7 @@ layout: default
 
 ````md magic-move
 
-```javascript
+```js {all|3-5|8-11|12|15-18}
 // Configuración
 import { createMemoryHistory, createRouter } from 'vue-router'
 import HomeView from './HomeView.vue'
@@ -331,25 +331,12 @@ const router = createRouter({
 })
 ```
 
-```javascript
-// Configuración
-const router = createRouter({ ... })
-
-// Esta función va a ser ejecutada cada vez
-// que el usuario navegue a las vistas
-router.beforeEach((to, from) => {
-  const canAccess = await canUserAccess(to)
-  if (!canAccess) return '/login'
-})
-
-```
-
-```vue
-<!-- Uso del router -->
+```vue {all|4|19|5|8|14-15|20-21|23}
 <script setup>
-import { useRouter, useRoute } from 'vue-router'
-const router = useRouter()
+import {useRoute, useRouter} from 'vue-router'
+
 const route = useRoute()
+const router = useRouter()
 
 function goToUsers() {
   router.push({ name : "Users" })
@@ -371,8 +358,17 @@ function goToUsers() {
 </template>
 
 ```
-
 ````
+
+<!-- 
+route: Información de la ruta actual  
+
+Es un objeto reactivo que representa la ruta activa en ese momento.
+
+router: El controlador de navegación  
+
+Es el objeto que maneja la navegación: crear rutas, redireccionar, avanzar, retroceder.
+ -->
 
 ---
 layout: default
