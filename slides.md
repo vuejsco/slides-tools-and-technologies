@@ -226,7 +226,7 @@ Style - Estilos
 layout: default
 ---
 
-# Ejemplo de componente
+# Implementar componente de Vue
 
 ```shell
 ParentComponent.Vue
@@ -244,6 +244,14 @@ import HelloWorld from './HelloWorld.vue'
 </script>
 <template>
   <HelloWorld />
+</template>
+```
+```vue{4-6|5}
+<script>
+import HelloWorld from './HelloWorld.vue'
+</script>
+<template>
+  <hello-world/>
 </template>
 ```
 ````
@@ -348,9 +356,9 @@ layout: default
 En Vue puedes usar **expresiones JavaScript directamente en el template**.  
 Esto te permite mostrar valores derivados, manipular strings, aplicar condiciones, y llamar funciones.
 
-```vue
+```vue {monaco-run}
 <script setup>  
-const message = ''Hello, Vue 3!''
+const message = 'Hello, Vue 3!'
 const count = 0
 
 // Función auxiliar para mostrar fecha actual
@@ -360,20 +368,19 @@ function formatDate(date) {
 </script>
 
 <template>
-  <!-- Concatenación de strings -->
-  <1>{{ message + ''AltSchool'' }}</1>
+  <h1>{{ message + 'AltSchool' }}</h1>
   <!-- Métodos de strings -->
   <h3>{{ message.toUpperCase() }}</h3>
   <h2>{{ message.repeat(3) }}</h2>
-  <2>{{ message + ''AltSchool''.toUpperCase() }}</2>
+  <2>{{ message + 'AltSchool'.toUpperCase() }}</2>
   <!-- Operador ternario -->
-  <dv>Cart: {{ count > 1 ? ''items'' : ''item'' }}</dv>
+  <dv>Cart: {{ count > 1 ? 'items' : 'item' }}</dv>
   <!-- Llamado de función definida en script -->
   <div>Current time: {{ formatDate(new Date()) }}</div>'
 </template>
 ```
 
-<!-- 
+<!--
 ANOTACIONES:
 
 - Vue soporta expresiones JS simples dentro de {{ }}.
@@ -427,10 +434,46 @@ ANOTACIONES:
 - Si necesitas lógica compleja, muévela al script como funciones o propiedades computadas.
 -->
 
+
+
+
 ---
 
+# Ciclo de vida de un componente
 
+````md magic-move
+```vue {all|4|8|12}
+<script setup>
+import { onMounted, onUpdated, onUnmounted } from 'vue'
 
+onMounted(() => {
+  console.log('✅ Componente montado')
+})
+
+onUpdated(() => {
+  console.log('🔄 Componente actualizado')
+})
+
+onUnmounted(() => {
+  console.log('🗑️ Componente destruido')
+})
+</script>
+```
+
+````
+<!--
+![Ciclo de vida](./lifecyle.png)
+-->
+
+---
+
+# Hooks
+
+## Estos son 3 hooks que Vue dispone para calcular, observar y reaccionar
+
+### - computed
+### - watch
+### watchEffect
 ---
 layout: cover
 ---
@@ -440,11 +483,89 @@ layout: cover
 
 ## Option (Anterior)
 
-
-<!-- Cuarto:
-Nombres de Versiones Inspirados en Anime: 
+<!-- 
+Dato curioso #4:  
+Nombres de Versiones Inspirados en Anime:  
 Las versiones de Vue.js llevan nombres de series de anime populares, como "Evangelion", "Dragon Ball", "Naruto" y "One Piece" .
  -->
+
+---
+layout: default
+---
+
+# Composition API vs Options API
+
+Vue 3 ofrece dos formas de escribir componentes:
+
+- **Options API**: tradicional, basada en secciones como `data`, `methods`, `computed`, etc.
+- **Composition API**: moderna, más flexible y basada en funciones dentro de `setup()`
+
+Ambas son válidas. Puedes elegir según el caso o combinarlas si lo necesitas.
+
+<!-- 
+ANOTACIONES:
+
+- Options API es más familiar para principiantes o quienes vienen de Vue 2.
+- Composition API es ideal para proyectos grandes, organización de lógica reutilizable, y mejores herramientas con TypeScript.
+-->
+
+---
+layout: default
+---
+
+# Ejemplo: Options API Vs Composition API
+
+
+````md magic-move
+```vue
+<script>
+export default {
+  data() {
+    return {
+      message: ''Hola desde Options API!'',
+      count: 0
+    }
+  },
+  computed: {
+    uppercaseMessage() {
+      return this.message.toUpperCase()
+    }
+  },
+  methods: {
+    increment() {
+      this.count++
+    }
+  }
+}
+</script>
+```
+
+```vue
+<script setup>
+import { ref, computed } from 'vue'
+
+const message = ref('Hola desde Composition API!')
+const count = ref(0)
+
+const uppercaseMessage = computed(() => message.value.toUpperCase())
+
+function increment() {
+  count.value++
+}
+</script>
+```
+````
+<!-- 
+ANOTACIONES:
+Options
+- Todo se organiza por opción: data, computed, methods.
+- Más declarativo y fácil de leer para principiantes.
+
+
+Composition:
+- La lógica se organiza por funcionalidad, no por tipo.
+- Mejora la escalabilidad en componentes grandes.
+-->
 
 
 ---
@@ -461,12 +582,8 @@ layout: default
 - **Nuxt.js**: SSR y SSG con Vue.
 
 ---
-layout: default
----
 
-# Como iniciar un proyecto de Vue.js
-
-## Vite 
+# ¿Qué es Vite?  
 
 ::code-group
 
@@ -482,13 +599,36 @@ yarn create vite
 pnpm create vite
 ```
 ::
+
+- Herramienta moderna para desarrollo frontend ⚡
+- Creador: **Evan You** (el mismo de Vue)
+- Usa **módulos ES nativos** y **hot reload rápido**
+- Reemplaza a herramientas como Webpack y Vue CLI
+
+## Características:
+- Dev server casi instantáneo
+- Build optimizado con Rollup
+- Configuración mínima
 <!--(Primera tecnologia del ecosistema de vue) -->
 
 ---
-layout: default
+
+# Impacto de Vite en Vue y más allá
+
+- **Vue CLI fue reemplazado oficialmente por Vite**
+- **Vue 3 está optimizado para Vite**
+- **Nuxt 3 usa Vite por defecto**
+- Herramientas como Vitest, VueUse, UnoCSS están basadas en Vite
+
+🌍 Además:
+- Adoptado también por React, Svelte y SolidJS
+- Influencia en nuevas herramientas como Turbopack (Next.js)
+
+✨ Vite es el nuevo estándar del desarrollo web moderno
+
 ---
 
-# Vue Router
+# Vue Router - Routing
 
 ````md magic-move
 
@@ -553,10 +693,8 @@ Es el objeto que maneja la navegación: crear rutas, redireccionar, avanzar, ret
  -->
 
 ---
-layout: default
----
 
-# Ejemplo Pinia
+# Pinia - State management
 
 ````md magic-move
 ```javascript{2|6}
@@ -600,5 +738,3 @@ const store = useCounterStore()
 </template>
 ```
 ````
-
-
