@@ -433,10 +433,6 @@ ANOTACIONES:
 - Las expresiones deben evaluarse a un valor, no ejecutar bloques de código.
 - Si necesitas lógica compleja, muévela al script como funciones o propiedades computadas.
 -->
-
-
-
-
 ---
 
 # Ciclo de vida de un componente
@@ -459,21 +455,49 @@ onUnmounted(() => {
 })
 </script>
 ```
-
 ````
 <!--
-![Ciclo de vida](./lifecyle.png)
+![Ciclo de vida](https://raw.githubusercontent.com/vuejsco/slides-tools-and-technologies/refs/heads/main/lifecyle.png)
 -->
 
 ---
 
 # Hooks
 
-## Estos son 3 hooks que Vue dispone para calcular, observar y reaccionar
+Estos son 3 hooks que Vue dispone para calcular, observar y reaccionar
 
 ### - computed
 ### - watch
-### watchEffect
+### - watchEffect
+
+--- 
+
+# computed
+
+Una propiedad computada se utiliza para describir de forma declarativa un valor que depende de otros valores. 
+</br>
+Las propiedades computadas te ahorran tiempo y hacen que tu código sea más limpio, ya que reflejan automáticamente los cambios en tus datos. </br>
+<ComputedProperties />
+
+---
+
+# watch
+
+Una función watch se utiliza para observar uno o más valores y ejecutar una acción cuando cambian.
+</br>
+Es útil para ejecutar lógica como validaciones, llamadas a APIs o actualizaciones externas sincronizadas con el estado.
+</br>
+<WatchProperties />
+
+---
+
+# watchEffect
+Una función watchEffect se ejecuta automáticamente y reacciona a cualquier valor reactivo que se utilice dentro de ella.
+</br>
+Es más declarativa e implícita que watch, ideal para efectos secundarios simples y rápidos.
+</br>
+<WatcheffectProperties />
+
 ---
 layout: cover
 ---
