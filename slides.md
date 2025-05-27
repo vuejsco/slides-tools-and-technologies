@@ -266,12 +266,90 @@ Vue usa *directivas* para extender HTML con lógica:
 - `@click`, `@input`, etc.: eventos
 
 ````md magic-move
-```html
+```vue
 <button @click="count++" :disabled="isLoading">
   Count: {{ count }}
 </button>
 ```
+
+<!-- v-model facilita esto -->
+
+```vue
+<!-- Engorroso hacer esto por cada input -->
+<input
+  :value="text"
+  @input="event => text = event.target.value" />
+```
+
+```vue
+<!-- v-model actualiza el input automaticamente -->
+<input v-model="text">
+```
 ````
+
+---
+layout: default
+---
+
+# Ejemplos de la directiva v-model
+
+<v-switch> 
+<template  #1> 
+```vue
+<script setup>
+import { ref } from 'vue'
+const message = ref('')
+</script>
+<template>
+  <p>Mensaje es: {{ message }}</p>
+  <input v-model="message" placeholder="Editame" />
+</template>
+```
+
+<VModelInput/>
+
+</template>
+
+<template #2> 
+
+  ```vue
+<script setup>
+import { ref } from 'vue'
+const message = ref('')
+</script>
+<template>
+  <span>Mensaje multilinea es</span>
+  <p style="white-space: pre-line;">{{ message }}</p>
+  <textarea v-model="message" placeholder="Agrega multiple lineas"></textarea>
+</template>
+  ```
+
+  <VModelTextArea /> 
+</template>
+
+<template #3> 
+
+  ```vue
+<script setup>
+import { ref } from 'vue'
+const selected = ref([])
+</script>
+<template>
+  <div>Seleccionaste: {{ selected }}</div>
+  <select v-model="selected" multiple>
+    <option>A</option>
+    <option>B</option>
+    <option>C</option>
+  </select>
+</template>
+
+  ```
+
+  <VModelSelect /> 
+</template>
+
+</v-switch>
+
 
 ---
 layout: default
