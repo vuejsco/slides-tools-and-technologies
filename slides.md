@@ -778,3 +778,123 @@ const store = useCounterStore()
 </template>
 ```
 ````
+
+---
+
+
+# VueUse
+
+Una colección de **composables** listos para usar (reutilizables y reactivamente integrados con Vue 3).
+
+- Integración perfecta con Composition API
+- Utilidades reactivas como `useDark()`, `useMouse()`, `useFetch()` y más
+- Evita reescribir lógica común
+
+```js
+<script setup>
+import { useMouse, useDark } from '@vueuse/core'
+
+const { x, y } = useMouse()
+const isDark = useDark()
+</script>
+
+<template>
+  <p>Mouse: {{ x }}, {{ y }}</p>
+  <p>Modo oscuro: {{ isDark }}</p>
+</template>
+```
+
+---
+
+# Vitest
+
+**Vitest** es el framework de pruebas oficial del ecosistema moderno de Vue.
+
+- Inspirado en Jest, pero usa Vite bajo el capó
+- Soporta pruebas unitarias, mockeo, cobertura, snapshots, y más
+- Integración con Composition API y Pinia
+
+```bash
+# Instalar
+npm install -D vitest
+
+# Ejecutar pruebas
+npx vitest
+```
+
+---
+
+# 🛠️ Vue Devtools
+
+Herramienta de depuración oficial para Vue.
+
+- Inspecciona componentes y props en tiempo real
+- Observa cambios en el estado de Pinia / Vuex
+- Inspecciona eventos emitidos
+- Disponible como extensión de navegador o modo standalone
+
+Tips:
+- Actívalo en modo desarrollo
+- Usa `defineOptions({ name: 'MiComponente' })` para identificarlos fácilmente
+
+---
+
+# Nuxt
+
+**Nuxt.js** es el metaframework más popular para Vue.
+
+- Soporta **SSR**, **SSG**, **SPA** y **Hybrid rendering**
+- Routing automático, layouts, middlewares
+- Integración con composables, plugins y módulos
+
+```bash
+# Crear un proyecto Nuxt
+npx nuxi init mi-proyecto
+cd mi-proyecto
+npm install
+npm run dev
+```
+---
+
+# 🎛️ Vuetify
+
+Framework de componentes UI basado en Material Design para Vue.
+
+- Ideal para dashboards y apps corporativas
+- Gran cantidad de componentes personalizables
+- Buen soporte para SSR y accesibilidad (a11y)
+
+```vue
+<template>
+  <v-container>
+    <v-btn color="primary">¡Haz clic!</v-btn>
+  </v-container>
+</template>
+```
+
+---
+
+# Quasar
+
+Framework completo para Vue que permite crear apps SPA, PWA, SSR, móviles y escritorio (Electron).
+
+- Usa una CLI poderosa (`quasar create`)
+- Sistema de diseño propio
+- Permite compilar tu app Vue a diferentes plataformas
+
+```bash
+# Crear proyecto Quasar
+npm create quasar
+
+# Ejecutar
+cd my-app
+quasar dev
+```
+
+---
+layout: center
+---
+
+# Muchas gracias por su tiempo
+
+## Bienvenidos a Vue JS Colombia
