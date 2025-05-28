@@ -895,6 +895,12 @@ quasar dev
 layout: center
 ---
 
-# Muchas gracias por su tiempo
-
-## Bienvenidos a Vue JS Colombia
+<div style="display: flex; align-items: center;">
+  <div style="flex: 2;">
+    <h1>Muchas gracias por su tiempo</h1>
+    <h2>Bienvenidos a Vue JS Colombia</h2>
+  </div>
+  <div style="flex: 1; text-align: left;">
+    <img src="./qr_code_website.png" width="200">
+  </div>
+</div>
