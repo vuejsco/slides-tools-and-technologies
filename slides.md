@@ -39,12 +39,12 @@ layout: center
 
 ## ¿Qué aprenderás hoy?
 
-- ¿Qué es Vue.js y por qué es tan popular?
-- Características principales y filosofía del framework
+- ¿Qué es Vue.js?
+- Características principales y **filosofía** del framework
 - Cómo crear y estructurar componentes Vue modernos
 - Uso de directivas, expresiones y buenas prácticas en templates
 - Ciclo de vida y hooks
-- Diferencias entre Composition API y Options API
+- Diferencias entre Composition API y Options API 
 - Herramientas clave del ecosistema
 
 <!-- Objetivo: Convencerte de que pruebes Vue.js -->
@@ -59,7 +59,7 @@ layout: center
 <br>
 <br>
 
-## Es el framework progresivo para construir interfaces de usuario.
+## Es el framework **progresivo** para construir interfaces de usuario.
 
 
 <!-- 
@@ -90,7 +90,7 @@ Inicialmente iba a llamarse "View", pero Evan lo cambió a "Vue" tras buscar en 
 
 # Como iniciar con Vue.js
 
-Podemos crear un proyecto con solo un `index.html` o usar vite para montar un nuevo proyecto
+Podemos crear un proyecto con solo un `index.html` o usar **vite** para montar un nuevo proyecto
 
 ```html {monaco}
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -571,7 +571,7 @@ layout: two-cols
 ---
 # computed
 
-Una propiedad computada se utiliza para describir de forma declarativa un valor que depende de otros valores. 
+Una propiedad computada se utiliza para **calcular** un valor que depende de otros valores. 
 <br>
 Las propiedades computadas te ahorran tiempo y hacen que tu código sea más limpio, ya que reflejan automáticamente los cambios en tus datos. 
 <br>
@@ -610,7 +610,7 @@ layout: two-cols
 
 # watch
 
-Una función watch se utiliza para observar uno o más valores y ejecutar una acción cuando cambian.
+Una función watch se utiliza para **observar** uno o más valores y ejecutar una acción cuando cambian.
 <br>
 Es útil para ejecutar lógica como validaciones, llamadas a APIs o actualizaciones externas sincronizadas con el estado.
 <WatchProperties />
@@ -668,7 +668,7 @@ layout: two-cols
 ---
 
 # watchEffect
-Una función watchEffect se ejecuta automáticamente y reacciona a cualquier valor reactivo que se utilice dentro de ella.
+Una función watchEffect se ejecuta automáticamente y *reacciona* a cualquier valor reactivo que se utilice dentro de ella.
 </br>
 Es más declarativa e implícita que watch, ideal para efectos secundarios simples y rápidos.
 </br>
