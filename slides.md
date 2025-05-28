@@ -21,28 +21,31 @@ layout: center
 
 
 # Presentado por: 
-- **Fabian Beltran**  
-  - Organizador de **Vue JS Colombia**  
-  - Desarrollador Frontend en **Alegra**
+
+**Fabian Beltran**  
+- Organizador de **Vue JS Colombia**  
+- Desarrollador Frontend en **Alegra**
 
 
 ## En colaboración con:
-### **Josue Barreto**
+
+**Josue Barreto**
 - Estudiante Ing. de Software
+- Colaborar de **Vue JS Colombia**
 
 ---
 layout: center
 ---
 
-<!-- TODO: Ajustar con los contenidos -->
-
 ## ¿Qué aprenderás hoy?
 
-- ¿Qué es Vue.js?
-- Principales características del framework
-- Herramientas esenciales del ecosistema
-- Ejemplo práctico de un componente Vue
-- Recursos y comunidades para seguir aprendiendo
+- ¿Qué es Vue.js y por qué es tan popular?
+- Características principales y filosofía del framework
+- Cómo crear y estructurar componentes Vue modernos
+- Uso de directivas, expresiones y buenas prácticas en templates
+- Ciclo de vida y hooks
+- Diferencias entre Composition API y Options API
+- Herramientas clave del ecosistema
 
 <!-- Objetivo: Convencerte de que pruebes Vue.js -->
 
@@ -51,16 +54,18 @@ layout: center
 layout: center
 ---
 
-<!-- TODO: Mejorar -->
-
 # ¿Qué es Vue.js?
 
-- Framework progresivo para construir interfaces de usuario.
-- Enfocado en la capa de vista.
-- Fácil de integrar con otros proyectos y bibliotecas.
-- Reactivo.
+<br>
+<br>
 
-<!-- Te ire dando datos curiosos de Vue a lo largo de la charla.   
+## Es el framework progresivo para construir interfaces de usuario.
+
+
+<!-- 
+Asi se define 
+
+Te ire dando datos curiosos de Vue a lo largo de la charla.   
 Dato curioso #1:  
 El creador del framework es Evan You.  
 Lo lanzó en 2014, hace más de 11 años. -->
@@ -81,8 +86,6 @@ layout: center
 <!-- Dato curioso #2:  
 Inicialmente iba a llamarse "View", pero Evan lo cambió a "Vue" tras buscar en Google Translate y elegir el francés por estética. -->
 
----
-layout: default
 ---
 
 # Como iniciar con Vue.js
@@ -121,8 +124,6 @@ Podemos crear un proyecto con solo un `index.html` o usar vite para montar un nu
 C:\Users\FabianAlegra\Desktop\VueJsCo\Slides-VueJS-Tools\examples\index.html
 -->
 
----
-layout: default
 ---
 
 # Estructura de un componente Vue
@@ -218,8 +219,6 @@ Template - HTML
 Style - Estilos 
 -->
 ---
-layout: default
----
 
 # Implementar componente de Vue
 
@@ -251,8 +250,6 @@ import HelloWorld from './HelloWorld.vue'
 ```
 ````
 
----
-layout: default
 ---
 
 # Template – Directivas
@@ -288,14 +285,13 @@ Vue usa *directivas* para extender HTML con lógica:
 ````
 
 ---
-layout: default
----
 
 # Ejemplos de la directiva v-model
 
 <v-switch> 
-<template  #1> 
-```vue
+<template  #1>
+
+  ```vue
 <script setup>
 import { ref } from 'vue'
 const message = ref('')
@@ -304,10 +300,9 @@ const message = ref('')
   <p>Mensaje es: {{ message }}</p>
   <input v-model="message" placeholder="Editame" />
 </template>
-```
+  ```
 
-<VModelInput/>
-
+  <VModelInput/>
 </template>
 
 <template #2> 
@@ -348,18 +343,39 @@ const selected = ref([])
   <VModelSelect /> 
 </template>
 
+<template #4> 
+
+  ```vue
+<script setup>
+import { ref } from "vue";
+const checkedNames = ref([]);
+</script>
+<template>
+  <input type="checkbox" id="jack" value="Jack" v-model="checkedNames" />
+  <label for="jack">Jack</label>
+  <input type="checkbox" id="john" value="John" v-model="checkedNames" />
+  <label for="john">John</label>
+  <input type="checkbox" id="mike" value="Mike" v-model="checkedNames" />
+  <label for="mike">Mike</label>
+  <br />
+  <span>Checked names: {{ checkedNames }}</span>
+</template>
+
+  ```
+
+  <VModelCheckbox /> 
+</template>
+
 </v-switch>
 
 
----
-layout: default
 ---
 
 # Combinando 'v-for' y 'v-if'
 
 Aunque se pueden usar juntos, **no es recomendable** colocar ambos en el mismo elemento. Esto puede generar ambigüedades y problemas de rendimiento.
 
-❌ **Mala práctica – Ambos en el mismo nodo**:
+**Mala práctica – Ambos en la misma etiqueta**:
 
 ```html
 <li v-for="user in users" v-if="user.active">
@@ -367,7 +383,7 @@ Aunque se pueden usar juntos, **no es recomendable** colocar ambos en el mismo e
 </li>
 ```
 
-✅ **Mejor práctica – Usar en elementos anidados**:
+**Mejor práctica – Usar en elementos anidados**:
 
 ```html
 <ul>
@@ -385,20 +401,25 @@ ANOTACIONES:
 -->
 
 ---
-layout: default
----
 
 # Malas prácticas comunes en templates
 
 Evita incluir **lógica compleja directamente en el template**. Manténlo limpio y declarativo.
 
-❌ **Evitar lógica compleja inline**:
+**Evitar lógica compleja inline**:
 
 ```html
 <p>{{ items.filter(i => i.active).map(i => i.name).join(',') }}</p>
 ```
 
-✅ **Mejor en el script**:
+---
+layout: image
+image: aquinohacemoseso.jpg
+---
+
+---
+
+**Mejor en el script**:
 
 ```vue
 <script setup>
@@ -420,8 +441,6 @@ ANOTACIONES:
 -->
 
 
----
-layout: default
 ---
 
 # Uso de expresiones en templates Vue
@@ -859,7 +878,6 @@ const store = useCounterStore()
 
 ---
 
-
 # VueUse
 
 Una colección de **composables** listos para usar (reutilizables y reactivamente integrados con Vue 3).
@@ -868,7 +886,7 @@ Una colección de **composables** listos para usar (reutilizables y reactivament
 - Utilidades reactivas como `useDark()`, `useMouse()`, `useFetch()` y más
 - Evita reescribir lógica común
 
-```js
+```vue
 <script setup>
 import { useMouse, useDark } from '@vueuse/core'
 
@@ -892,14 +910,6 @@ const isDark = useDark()
 - Soporta pruebas unitarias, mockeo, cobertura, snapshots, y más
 - Integración con Composition API y Pinia
 
-```bash
-# Instalar
-npm install -D vitest
-
-# Ejecutar pruebas
-npx vitest
-```
-
 ---
 
 # 🛠️ Vue Devtools
@@ -915,6 +925,8 @@ Tips:
 - Actívalo en modo desarrollo
 - Usa `defineOptions({ name: 'MiComponente' })` para identificarlos fácilmente
 
+<!-- https://devtools.vuejs.org/guide/standalone -->
+
 ---
 
 # Nuxt
@@ -925,13 +937,8 @@ Tips:
 - Routing automático, layouts, middlewares
 - Integración con composables, plugins y módulos
 
-```bash
-# Crear un proyecto Nuxt
-npx nuxi init mi-proyecto
-cd mi-proyecto
-npm install
-npm run dev
-```
+<!-- https://stackblitz.com/github/nuxt/starter/tree/v3?file=README.md -->
+
 ---
 
 # 🎛️ Vuetify
@@ -950,6 +957,8 @@ Framework de componentes UI basado en Material Design para Vue.
 </template>
 ```
 
+<!-- https://vuetifyjs.com/en/ -->
+
 ---
 
 # Quasar
@@ -960,14 +969,7 @@ Framework completo para Vue que permite crear apps SPA, PWA, SSR, móviles y esc
 - Sistema de diseño propio
 - Permite compilar tu app Vue a diferentes plataformas
 
-```bash
-# Crear proyecto Quasar
-npm create quasar
-
-# Ejecutar
-cd my-app
-quasar dev
-```
+<!-- https://quasar.dev/docs -->
 
 ---
 layout: center
