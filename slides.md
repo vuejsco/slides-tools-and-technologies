@@ -414,7 +414,7 @@ Evita incluir **lógica compleja directamente en el template**. Manténlo limpio
 
 ---
 layout: image
-image: aquinohacemoseso.jpg
+image: /aquinohacemoseso.jpg
 ---
 
 ---
