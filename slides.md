@@ -413,8 +413,8 @@ Evita incluir **lógica compleja directamente en el template**. Manténlo limpio
 ```
 
 ---
-layout: 'image'
-image: '/aquinohacemoseso.jpg'
+layout: "image"
+image: "/aquinohacemoseso.jpg"
 ---
 
 ---
@@ -567,25 +567,104 @@ Estos son 3 hooks que Vue dispone para calcular, observar y reaccionar
 ### - watchEffect
 
 --- 
-
+layout: two-cols
+---
 # computed
 
 Una propiedad computada se utiliza para describir de forma declarativa un valor que depende de otros valores. 
-</br>
-Las propiedades computadas te ahorran tiempo y hacen que tu código sea más limpio, ya que reflejan automáticamente los cambios en tus datos. </br>
+<br>
+Las propiedades computadas te ahorran tiempo y hacen que tu código sea más limpio, ya que reflejan automáticamente los cambios en tus datos. 
+<br>
 
 <ComputedProperties />
 
+::right::
+
+```vue 
+<script setup>
+import { computed, ref } from "vue";
+
+const firstName = ref("");
+const lastName = ref("");
+
+const fullName = computed(() => {
+  return firstName.value + " " + lastName.value;
+});
+</script>
+
+<template>
+  <div class="name">
+    <label for="firstName">Primer Nombre:</label>
+    <input v-model="firstName" placeholder="Ingresa primer nombre" />
+    <label for="firstName">Primer Apellido:</label>
+    <input v-model="lastName" placeholder="Ingresa primer apellido" />
+    <p v-if="firstName || lastName">Bienvenido: {{ fullName }}</p>
+    <p v-else>Ingresa tu nombre y apellido</p>
+  </div>
+</template>
+```
+
+---
+layout: two-cols
 ---
 
 # watch
 
 Una función watch se utiliza para observar uno o más valores y ejecutar una acción cuando cambian.
-</br>
+<br>
 Es útil para ejecutar lógica como validaciones, llamadas a APIs o actualizaciones externas sincronizadas con el estado.
-</br>
 <WatchProperties />
 
+::right::
+
+````md magic-move
+```vue 
+<script setup>
+import { ref, computed, watch } from 'vue'
+
+const firstName = ref('')
+const lastName = ref('')
+const nameColor = ref('gray')
+
+const fullName = computed(() => {
+  return `${firstName.value} ${lastName.value}`.trim()
+})
+
+// Cambia el color cuando se actualizan los campos
+watch([firstName, lastName], ([newFirst, newLast]) => {
+  if (newFirst && newLast) {
+    nameColor.value = 'green'
+  } else if (newFirst || newLast) {
+    nameColor.value = 'orange'
+  } else {
+    nameColor.value = 'gray'
+  }
+})
+</script>
+```
+
+```vue
+<template>
+  <div class="name">
+    <label for="firstName">Primer Nombre:</label>
+    <input 
+      v-model="firstName"
+      placeholder="Ingresa primer nombre" />
+    <label for="lastName">Primer Apellido:</label>
+    <input 
+      v-model="lastName" 
+      placeholder="Ingresa primer apellido" />
+    <p :style="{ color: nameColor }">
+      {{ firstName || lastName ? 
+      `Bienvenido: ${fullName}` : 
+      'Ingresa tu nombre y apellido' }}
+    </p>
+  </div>
+</template>
+```
+````
+---
+layout: two-cols
 ---
 
 # watchEffect
@@ -595,6 +674,54 @@ Es más declarativa e implícita que watch, ideal para efectos secundarios simpl
 </br>
 <WatcheffectProperties />
 
+::right::
+````md magic-move
+```vue
+<script setup>
+import { ref, computed, watchEffect } from 'vue'
+
+const firstName = ref('')
+const lastName = ref('')
+const nameColor = ref('gray')
+
+const fullName = computed(() => {
+  return `${firstName.value} ${lastName.value}`.trim()
+})
+
+// watchEffect reacciona automáticamente a 
+// cualquier cambio usado dentro de su función
+watchEffect(() => {
+  if (firstName.value && lastName.value) {
+    nameColor.value = 'green'
+  } else if (firstName.value || lastName.value) {
+    nameColor.value = 'orange'
+  } else {
+    nameColor.value = 'gray'
+  }
+})
+</script>
+```
+
+```vue
+<template>
+  <div class="name">
+    <label for="firstName">Primer Nombre:</label>
+    <input
+      v-model="firstName"
+      placeholder="Ingresa primer nombre" />
+    <label for="lastName">Primer Apellido:</label>
+    <input
+      v-model="lastName"
+      placeholder="Ingresa primer apellido" />
+    <p :style="{ color: nameColor }">
+      {{ firstName || lastName ? 
+      `Bienvenido: ${fullName}` : 
+      'Ingresa tu nombre y apellido' }}
+    </p>
+  </div>
+</template>
+```
+````
 ---
 layout: cover
 ---
@@ -937,7 +1064,10 @@ Tips:
 - Routing automático, layouts, middlewares
 - Integración con composables, plugins y módulos
 
-<!-- https://stackblitz.com/github/nuxt/starter/tree/v3?file=README.md -->
+<!-- 
+Dato curioso: Medellin.js antes usaba Nuxt
+Que paso, pense que eran cheveres!
+https://stackblitz.com/github/nuxt/starter/tree/v3?file=README.md -->
 
 ---
 
