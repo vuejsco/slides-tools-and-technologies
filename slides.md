@@ -31,7 +31,7 @@ layout: center
 
 **Josue Barreto**
 - Estudiante Ing. de Software
-- Colaborar de **Vue JS Colombia**
+- Colaborador de **Vue JS Colombia**
 
 ---
 layout: center
